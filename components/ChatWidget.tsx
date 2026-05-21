@@ -322,7 +322,7 @@ export default function ChatWidget() {
       {/* Floating button */}
       <button
         onClick={() => setIsOpen(true)}
-        className={`fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full shadow-lg flex items-center justify-center text-white transition-all duration-200 hover:scale-110 active:scale-95 ${
+        className={`fixed bottom-6 right-3 sm:right-6 z-50 w-14 h-14 rounded-full shadow-lg flex items-center justify-center text-white transition-all duration-200 hover:scale-110 active:scale-95 ${
           isOpen ? 'opacity-0 pointer-events-none scale-90' : 'opacity-100 scale-100'
         }`}
         style={{ backgroundColor: '#005B41' }}
@@ -342,30 +342,28 @@ export default function ChatWidget() {
       {isOpen && (
         <div
           ref={chatRef}
-          className="fixed bottom-6 right-6 z-50 flex flex-col rounded-2xl shadow-2xl overflow-hidden"
+          className="fixed bottom-3 right-3 sm:bottom-6 sm:right-6 z-50 flex flex-col rounded-2xl shadow-2xl overflow-hidden"
           style={{
-            width: `${chatSize.width}px`,
-            height: `${chatSize.height}px`,
+            width: `min(${chatSize.width}px, calc(100vw - 1.5rem))`,
+            height: `min(${chatSize.height}px, calc(100dvh - 5rem))`,
             backgroundColor: '#ffffff',
             border: '1px solid #e5e7eb',
           }}
         >
-          {/* Resize handle - top left corner */}
+          {/* Resize handles - desktop only */}
           <div
             onMouseDown={handleResizeStart}
-            className="absolute top-0 left-0 w-4 h-4 cursor-nwse-resize z-10"
+            className="absolute top-0 left-0 w-4 h-4 cursor-nwse-resize z-10 hidden sm:block"
             style={{ touchAction: 'none' }}
           />
-          {/* Resize handle - top edge */}
           <div
             onMouseDown={handleResizeStart}
-            className="absolute top-0 left-4 right-4 h-2 cursor-ns-resize z-10"
+            className="absolute top-0 left-4 right-4 h-2 cursor-ns-resize z-10 hidden sm:block"
             style={{ touchAction: 'none' }}
           />
-          {/* Resize handle - left edge */}
           <div
             onMouseDown={handleResizeStart}
-            className="absolute top-4 bottom-4 left-0 w-2 cursor-ew-resize z-10"
+            className="absolute top-4 bottom-4 left-0 w-2 cursor-ew-resize z-10 hidden sm:block"
             style={{ touchAction: 'none' }}
           />
           {/* Header */}
